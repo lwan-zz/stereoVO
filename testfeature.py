@@ -1,10 +1,11 @@
 import features
 import cv2
+import params
 
-img1 = cv2.imread('/home/lwan/dev/dataset/2011_09_26_drive_0029_sync/image_02/data/0000000000.png',0)
-img2 = cv2.imread('/home/lwan/dev/dataset/2011_09_26_drive_0029_sync/image_03/data/0000000000.png',0)
+img1 = cv2.imread(params.IMGLOCATION+'/image_02/data/0000000000.png',0)
+img2 = cv2.imread(params.IMGLOCATION+'/image_03/data/0000000000.png',0)
 
-imgout = cv2.imread('/home/lwan/dev/dataset/2011_09_26_drive_0029_sync/image_02/data/0000000000.png')
+imgout = cv2.imread(params.IMGLOCATION+'image_02/data/0000000000.png')
 
 size = [3,3]
 
