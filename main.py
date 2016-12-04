@@ -16,8 +16,9 @@ def main():
 	(imL0,imR0) = openImg.getImgs(fileL[0],fileR[0])
 	(imLprev,imRprev) = openImg.getImgs(fileL[1],fileR[1])
 	
-	xL = np.matrix('1.,2.,3.,4.,5.;1.5,2.5,3.5,4.5,5.5')
-	xR = np.matrix('1.,2.,3.,4.,5.;1.5,2.5,3.5,4.5,5.5')
+	#dummy correspondences
+	xL = np.matrix('1.,2.,3.,4.,5.,6.;1.5,2.5,3.5,4.5,5.5,6.5') 
+	xR = np.matrix('1.,2.,3.,4.,5.,6.;1.5,2.5,3.5,4.5,5.5,6.5')
 
 	######
 	#feature detection and correspondance matching calls go here
@@ -30,7 +31,9 @@ def main():
 
 	#pass in a subset of x3d coords.
 
-	import pdb;pdb.set_trace() #for debugging
+	#more dummy correspondences
+	xL1 = np.matrix('1.1,2.1,3.1,4.1,5.1,6.1;1.51,2.51,3.51,4.51,5.51,6.23') 
+	xR1 = np.matrix('1.8,2.8,3.73,4.4,5.2,6.4;1.53,2.54,3.2,4.3,5.3,6.62')
 
 	a = storeIdx;
 	for i in xrange(2,len(fileL)):
@@ -41,9 +44,13 @@ def main():
 		#feature detection and correspondance matching calls go here
 		######
 
-		[x3dtemp,projerr] = triangulation.triangulate(xL,xR)
 
-		x3d=hstack(x3d,x3dtemp) #concatenate the 3d coordinate matrices
+		[x3dtemp,projerr] = triangulation.triangulate(xL,xR)
+		[rec,rot,trans]=PnP.camPose(x3d,xL,projerr)
+
+		import pdb;pdb.set_trace() #for debugging
+
+		#x3d=hstack(x3d,x3dtemp) #this doesnt ork, but need to concatenate the 3d coordinate matrices
 
 		storeIdx=np.shape(x3d) #may be extraneous
 
