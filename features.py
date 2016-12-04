@@ -39,9 +39,9 @@ def getFeatures(img, sizeWindowArray ):
 
 
 
-def getCorres(desc1, desc2):
+def getCorres(desc1, desc2, kp1, kp2):
 
-    k = int(2)
+    k = 2
     ratio = 0.75
 
 # Brute force with ratio test
@@ -53,7 +53,12 @@ def getCorres(desc1, desc2):
         if m.distance < ratio*n.distance:
             good.append([m])
 
-    return good
+    leftCorres = np.float32([ kp1[m[0].queryIdx].pt for m in good ]).reshape(-1,2,1)
+    rightCorres = np.float32([ kp2[m[0].trainIdx].pt for m in good ]).reshape(-1,2,1)
+
+
+    returns = (leftCorres, rightCorres)
+    return returns
 
 
 
