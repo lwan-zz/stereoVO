@@ -4,14 +4,12 @@ import operator
 import collections
 
 def getFeatures(img, sizeWindowArray ):
+    
     height, width= img.shape
 
     xstep = int(width/sizeWindowArray[1])
     ystep = int(height/sizeWindowArray[0])
     arrayidx = 0
-
-    
-
     sift = cv2.xfeatures2d.SIFT_create(100)
     windowidx = 0
     

@@ -12,7 +12,7 @@ size = [3,3]
 kp1,desc1 = features.getFeatures(img1,size)
 kp2,desc2 = features.getFeatures(img2,size)
 
-leftCorres, rightCorresi, matches = features.getCorres(desc1,desc2,kp1,kp2)
+leftCorres, rightCorres, matches = features.getCorres(desc1,desc2,kp1,kp2)
 
 #img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,corres,imgout,flags=2)
 #cv2.imshow("Display",img3)
