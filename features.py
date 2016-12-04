@@ -56,9 +56,12 @@ def getCorres(desc1, desc2, kp1, kp2):
     leftCorres = np.float32([ kp1[m[0].queryIdx].pt for m in good ]).reshape(-1,2,1)
     rightCorres = np.float32([ kp2[m[0].trainIdx].pt for m in good ]).reshape(-1,2,1)
 
+#    import pdb; pdb.set_trace()
    # good of type Dmatch 
+    leftCorresidx = np.matrix([ good[m][0].trainIdx for m in range(len(good)) ])
+    rightCorresidx = np.matrix([ good[m][0].queryIdx for m in range(len(good)) ])
 
-    returns = (leftCorres, rightCorres, good)
+    returns = (leftCorres, rightCorres, leftCorresidx, rightCorresidx)
     return returns
 
 
