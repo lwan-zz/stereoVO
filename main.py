@@ -35,7 +35,7 @@ def main():
 	xL1 = np.matrix('1.1,2.1,3.1,4.1,5.1,6.1;1.51,2.51,3.51,4.51,5.51,6.23') 
 	xR1 = np.matrix('1.8,2.8,3.73,4.4,5.2,6.4;1.53,2.54,3.2,4.3,5.3,6.62')
 
-	a = storeIdx;
+	a = storeIdx;	
 	for i in xrange(2,len(fileL)):
 
 		(imLnext,imRnext) = openImg.getImgs(fileL[i],fileR[i])

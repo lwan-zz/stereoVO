@@ -7,11 +7,11 @@ def camPose(x3d,x2dL,perror):
 	x3d=np.array(x3d)
 	x2dL=np.array(x2dL)
 
+	#### these are not used. however they might be useful elsewhere.
+	#### rot and trans are actually outputs for the solvepnp
+	#### formatting of the documentation confused me
 	#rotation and translation between left and right cameras
 	Rot = np.reshape(np.asarray(params.R02).T.tolist()*params.R03,(1,9))
-
-	import pdb;pdb.set_trace() #for debugging
-
 	#Trans = np.asarray(params.t03).T.tolist()-params.R03/params.R02*np.asarray(params.t02).T.tolist()
 	Trans = params.t03-params.R03/params.R02*params.t02
 
@@ -24,12 +24,12 @@ def camPose(x3d,x2dL,perror):
 
 	import pdb;pdb.set_trace() #for debugging
 
-	(ret,rot,trans) = cv2.solvePnP(x3d_PnP,x2dL_PnP,params.P02,distCoef=None,Rot,Trans,True)
-
+	(ret,rotV,transV) = cv2.solvePnP(x3d_PnP,x2dL_PnP,params.K02,params.D02))
+	[rotMat,jac]=cv2.Rodrigues(rotV)
 	#conduct bundle adjustment for rectified rotation and translation matrices
-	(rotRect,transRect) = bundleAdjust(perror,rot,trans)
+	(rotRect,transRect) = bundleAdjust(perror,rotMat,transV)
 
-	return (rot,trans)
+	return (rotMat,transV)
 	#return (rotRect,transRect)
 
 def bundleAdjust(perror,rot,trans):
