@@ -8,7 +8,7 @@ import openImg
 import triangulation
 
 
-def update(globalpose, transformedPoints)
+def update(globalpose, transformedPoints):
     global pts, pose
 
     pts =  transformedPoints.transpose()
@@ -21,7 +21,7 @@ def update(globalpose, transformedPoints)
 #    return (pose, pts)
 
 
-def draw()
+def vis(pos):
     app = QtGui.QApplication([])
     w = gl.GLViewWidget()
     w.opts['distance'] = 100

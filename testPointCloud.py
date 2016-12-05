@@ -36,7 +36,7 @@ for m in range(1):
         x3d = np.concatenate((x3d,x3dSave), axis =1)
 
     print(m)
-#import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 
 x3d = x3d.transpose()
 pos = x3d.getA()
