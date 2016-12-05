@@ -61,6 +61,9 @@ def getCorres(desc1, desc2, kp1, kp2):
     leftCorresidx = np.matrix([ good[m][0].trainIdx for m in range(len(good)) ])
     rightCorresidx = np.matrix([ good[m][0].queryIdx for m in range(len(good)) ])
 
+    leftCorres = np.matrix.transpose(np.concatenate((leftCorres[:,0],leftCorres[:,1]),axis=1))
+    rightCorres = np.matrix.transpose(np.concatenate((rightCorres[:,0],rightCorres[:,1]),axis=1))
+
     returns = (leftCorres, rightCorres, leftCorresidx, rightCorresidx)
     return returns
 
