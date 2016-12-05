@@ -45,7 +45,7 @@ def triangulate (x2dL,x2dR): #x2d's must be of size 2 x N
 	x2dLSave=np.matrix(np.zeros((x2dL.shape[0],x2dL.shape[1])))
 	x2dRSave=np.matrix(np.zeros((x2dR.shape[0],x2dR.shape[1])))
 
-	a=1
+	a=0
 	for i in xrange(pErrUnfilt.shape[0]):
 		if pErrUnfilt[i] < 10:
 			pErrSave[a] = pErrUnfilt[i]
@@ -56,6 +56,7 @@ def triangulate (x2dL,x2dR): #x2d's must be of size 2 x N
 			a+=1
 
 	pErrSave=pErrSave[:np.amax(np.nonzero(pErrSave))]
+	idxSave=idxSave[:np.amax(np.nonzero(pErrSave))]
 #	x3dSave=x3dSave[:4,:np.amax(np.nonzero(pErrSave))]
 #	x2dLSave=x2dLSave[:,:np.amax(np.nonzero(pErrSave))]
 #	x2dRSave=x2dRSave[:,:np.amax(np.nonzero(pErrSave))]

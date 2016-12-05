@@ -19,12 +19,12 @@ def camPose(x3d,x2dL,perror):
 	#homo = np.matrix('0,0,0,1')
 	#P2=np.concatenate((params.P02,homo),axis=0) #make projection matrix homogeneous
 	
-	x3d_PnP = np.matrix.transpose(x3d[:3])
+	x3d_PnP = np.matrix.transpose(x3d)
 	x2dL_PnP = np.matrix.transpose(x2dL)
 
 
 	dist = np.zeros((1,5))
-	import pdb;pdb.set_trace() #for debugging
+	#import pdb;pdb.set_trace() #for debugging
 	(ret,rotV,transV) = cv2.solvePnP(x3d_PnP,x2dL_PnP,np.eye(3),dist)
 	[rotMat,jac]=cv2.Rodrigues(rotV)
 	#conduct bundle adjustment for rectified rotation and translation matrices
